@@ -15,6 +15,9 @@ public class Asignacion implements Sentencia {
 	public Object accept(Visitor v, Object param) {
 		// TODO Auto-generated method stub
 		return v.visit(this,param);
+		
+		
+		
 	}
 
 
