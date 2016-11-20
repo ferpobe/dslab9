@@ -22,20 +22,23 @@ public class ExecuteVisitor implements Visitor {
 	@Override
 	public Object visit(Asignacion a , Object param) {
 		// TODO Auto-generated method stub
-		Variable c =(Variable) a.variable.accept(this, param);
-		Variable b =(Variable) a.expr.accept(this, param);
+		
+		
+		Object c = a.variable.accept(this, param);
+		Object b = a.expr.accept(this, param);
 		c=b;
-		return null;
+		System.out.println(""+c+ " "+b);
+		
+		
+		return c;
 		
 		
 	}
 
 	@Override
-	public Object visit(ConstanteInt ci,Object param) {
+	public String visit(ConstanteInt ci,Object param) {
 		// TODO Auto-generated method stub
-		
-		
-		return ci;
+		return ci.valor;
 		
 		
 	}
@@ -43,9 +46,12 @@ public class ExecuteVisitor implements Visitor {
 	@Override
 	public Object visit(Division d,Object param) {
 		// TODO Auto-generated method stub
-		int a =(int) d.left.accept(this, param);
-		int b =(int) d.right.accept(this, param);
-		return a/b;
+		int a = Integer.parseInt( (String) d.left.accept(this, param));
+		int b = Integer.parseInt((String) d.right.accept(this, param));
+		
+		int f=a/b;
+		System.out.println(f);
+		return f;
 		
 	}
 
@@ -59,11 +65,12 @@ public class ExecuteVisitor implements Visitor {
 
 	@Override
 	public Object visit(Producto p,Object param) {
-		// TODO Auto-generated method stub
-		int a =(int) p.left.accept(this, param);
-		int b =(int) p.right.accept(this, param);
+		int a = Integer.parseInt( (String) p.left.accept(this, param));
+		int b = Integer.parseInt((String) p.right.accept(this, param));
 		
-		return a*b;
+		int f=a*b;
+		System.out.println(f);
+		return f;
 		
 	}
 
@@ -80,18 +87,33 @@ public class ExecuteVisitor implements Visitor {
 	@Override
 	public Object  visit(Suma s,Object param) {
 		// TODO Auto-generated method stub
-		int a =(int) s.left.accept(this, param);
-		int b =(int) s.right.accept(this, param);
-		return a+b;
+		int a = Integer.parseInt( (String) s.left.accept(this, param));
+		int b = Integer.parseInt((String) s.right.accept(this, param));
+		
+		int f=a+b;
+		System.out.println(f);
+		return f;
 		
 	}
 
 	@Override
-	public Object visit(Variable var,Object param) {
+	public String visit(Variable var,Object param) {
 		// TODO Auto-generated method stub
 		
-		return var;
+		return var.name;
 		
 	}
+	public int ConvertirObjectToInt(Object Obj) {
+		int NumInt = Integer.parseInt(ConvertirObjectToString(Obj));
+		return NumInt;
+		}
+	
+	public String ConvertirObjectToString(Object Obj) {
+		String Str="";
+		if(Obj!=null){
+		Str = Obj.toString();
+		}
+		return Str;
+		}
 
 }

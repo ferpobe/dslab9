@@ -49,7 +49,7 @@ public class Main {
 		System.out.println("\n--- Recorrido con Visitor: sin hacer");
 		PrintVisitor print = new PrintVisitor();
 		ExecuteVisitor execute = new ExecuteVisitor();
-		prog.accept(execute, null);
+		prog.accept(print, null);
 
 	}
 }
